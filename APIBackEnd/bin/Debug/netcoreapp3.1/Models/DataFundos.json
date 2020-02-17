@@ -1,0 +1,12 @@
+[
+  {
+    "NomeDoFundo": "Fundo de numero 1",
+    "CnpjDoFundo": "125488",
+    "InvestimentoInicialMinimo": "2000"
+  },
+  {
+    "NomeDoFundo": "Fundo de numero 2",
+    "CnpjDoFundo": "658745",
+    "InvestimentoInicialMinimo": "5000"
+  }
+]
