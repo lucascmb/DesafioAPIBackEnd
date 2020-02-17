@@ -1,0 +1,27 @@
+[
+  {
+    "NomeDoFundo": "ARX INCOME FIA",
+    "CnpjDoFundo": "03.168.062/0001-03",
+    "InvestimentoInicialMinimo": 500
+  },
+  {
+    "NomeDoFundo": "CONSTELLATION INSTITUCIONAL FIC DE FIA",
+    "CnpjDoFundo": "16.948.298/0001-04",
+    "InvestimentoInicialMinimo": 5000
+  },
+  {
+    "NomeDoFundo": "OPEN VISTA CIENCIAS MEDICAS FIA IE",
+    "CnpjDoFundo": "27.181.717/0001-33",
+    "InvestimentoInicialMinimo": 25000
+  },
+  {
+    "NomeDoFundo": "TRIUS STAR FUNDO DE INVESTIMENTO DE ACOES",
+    "CnpjDoFundo": "31.907.986/0001-01",
+    "InvestimentoInicialMinimo": 1000
+  },
+  {
+    "NomeDoFundo": "VINCI MOSAICO FIA",
+    "CnpjDoFundo": "28.470.587/0001-11",
+    "InvestimentoInicialMinimo": 10000
+  }
+]

@@ -30,9 +30,12 @@ namespace APIBackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<FundosContext>(opt => opt.UseInMemoryDatabase("ListaFundos"));
-            services.AddDbContext<MovimentacoesContext>(opt => opt.UseInMemoryDatabase("ListaMovimentacoes"));
+            //services.AddDbContext<FundosContext>(opt => opt.UseInMemoryDatabase("ListaFundos"));
+            //services.AddDbContext<MovimentacoesContext>(opt => opt.UseInMemoryDatabase("ListaMovimentacoes"));
+            services.AddDbContext<APIContext>(opt => opt.UseInMemoryDatabase("APIDatabase"));
             services.AddControllers();
+
+            //services.AddScoped<>
 
             services.AddSwaggerGen(c =>
             {
@@ -48,16 +51,16 @@ namespace APIBackEnd
                 app.UseDeveloperExceptionPage();
             }
 
-            var options = new DbContextOptionsBuilder<FundosContext>().UseInMemoryDatabase(databaseName: "ListaFundos").Options;
+            var options = new DbContextOptionsBuilder<APIContext>().UseInMemoryDatabase(databaseName: "APIDatabase").Options;
 
-            using (var context = new FundosContext(options))
+            using (var context = new APIContext(options))
             {
                 context.Database.EnsureCreated();
 
-                var jsonString = File.ReadAllText("Models/DataFundos.json");
+                var jsonString = File.ReadAllText("SeedFiles/DataFundos.json");
                 var fund = JsonSerializer.Deserialize<List<Fundo>>(jsonString);
 
-                context.AddRange(fund);
+                context.Fundos.AddRange(fund);
 
                 context.SaveChanges();
             }

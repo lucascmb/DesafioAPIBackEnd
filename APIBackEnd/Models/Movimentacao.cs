@@ -8,13 +8,13 @@ namespace APIBackEnd.Models
 {
     public class Movimentacao
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public TipoMovimentacao TipoDaMovimentacao { get; set; }
         public string CpfDoCliente { get; set; }
         public decimal ValorDaMovimentacao { get; set; }
         public DateTime DataDaMovimentacao { get; set; }
 
-        public int IdDoFundo { get; set; }
-        public Fundo Fundo { get; set; }
+        public Guid IdDoFundo { get; set; }
+        //public Fundo Fundo { get; set; }
     }
 }
