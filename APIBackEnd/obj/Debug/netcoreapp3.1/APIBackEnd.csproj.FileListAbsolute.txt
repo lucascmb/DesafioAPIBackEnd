@@ -141,10 +141,10 @@ C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debu
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\Models\DataFundos.json
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\SeedFiles\DataFundos.json
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\obj\Debug\netcoreapp3.1\APIBackEnd.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\obj\Debug\netcoreapp3.1\APIBackEnd.MvcApplicationPartsAssemblyInfo.cache
