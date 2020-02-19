@@ -16,6 +16,7 @@ namespace Test
         static APIContext _context;
         static FundosController _fcontroller;
         static MovimentacoesController _mcontroller;
+        static List<Movimentacao> _movs;
 
         [ClassInitialize]
         public static void Start(TestContext context)
@@ -27,6 +28,9 @@ namespace Test
 
             var jsonString = File.ReadAllText("MockDB/DataFundos.json");
             var fund = JsonSerializer.Deserialize<List<Fundo>>(jsonString);
+
+            jsonString = File.ReadAllText("MockDB/DataMov.json");
+            _movs = JsonSerializer.Deserialize<List<Movimentacao>>(jsonString);
 
             _context.Fundos.AddRange(fund);
 
@@ -50,12 +54,19 @@ namespace Test
         }
 
         [TestMethod]
+        public void AporteInicialAbaixo()
+        {
+            var response = _mcontroller.PostMovimentacao(_movs.Where(m => m.ValorDaMovimentacao < 100).FirstOrDefault());
+
+            var message = response.Exception.InnerException.Message;
+
+            Assert.AreEqual(message, "Movimentação Inválida : O valor investimento não é superior ao valor mínimo do fundo");
+        }
+
+        [TestMethod]
         public void AdicionaMovimentacao()
         {
-            var jsonString = File.ReadAllText("MockDB/DataMov.json");
-            var mov = JsonSerializer.Deserialize<List<Movimentacao>>(jsonString);
-
-            var response = _mcontroller.PostMovimentacao(mov.First());
+            var response = _mcontroller.PostMovimentacao(_movs.Where(m => m.ValorDaMovimentacao == 2000).FirstOrDefault());
 
             var result = response.Result.Result as ObjectResult;
             var actionResult = result.Value as CreatedAtActionResult;
@@ -65,34 +76,26 @@ namespace Test
         }
 
         [TestMethod]
-        public void AporteInicialAbaixo()
+        public void SaldoInsuficiente()
         {
-            var jsonString = File.ReadAllText("MockDB/DataMov.json");
-            var mov = JsonSerializer.Deserialize<List<Movimentacao>>(jsonString);
+            var mov = _movs.Where(m => m.ValorDaMovimentacao >= 10000 && m.TipoDaMovimentacao == TipoMovimentacao.Resgate).FirstOrDefault();
 
-            var response = _mcontroller.PostMovimentacao(mov.Where(m => m.ValorDaMovimentacao < 100).FirstOrDefault());
+            var response = _mcontroller.PostMovimentacao(mov).Result.Result as ObjectResult;
 
-            var message = response.Exception.InnerException.Message;
+            Assert.AreEqual(response.Value, "Movimentação Inválida : Saldo insuficiente");
+            Assert.AreEqual(response.StatusCode, 400);
 
-            Assert.AreEqual(message, "Movimentação Inválida : O valor investimento não é superior ao valor mínimo do fundo");
         }
 
-        //[TestMethod]
-        //public void SaldoInsuficiente()
-        //{
-        //    var jsonString = File.ReadAllText("MockDB/DataMov.json");
-        //    var mov = JsonSerializer.Deserialize<List<Movimentacao>>(jsonString);
+        [TestMethod]
+        public void FundoInexistente()
+        {
+            var mov = _movs.Where(m => m.IdDoFundo == System.Guid.Parse("7565c6e5-89e0-4cec-ac18-b260e85d9b8d")).FirstOrDefault();
 
-        //    string message;
-        //    int statusCode;
+            var response = _mcontroller.PostMovimentacao(mov).Result.Result as ObjectResult;
 
-        //    foreach(var m in mov)
-        //    {
-        //        var response = _mcontroller.PostMovimentacao(m);
-        //        Assert.AreEqual(response, 501);
-        //    }
-
-        //    Assert.AreEqual(mov, 1);
-        //}
+            Assert.AreEqual(response.Value, "Movimentação Inválida : O fundo não existe");
+            Assert.AreEqual(response.StatusCode, 400);
+        }
     }
 }
