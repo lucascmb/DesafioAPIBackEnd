@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["APIBackEnd/APIBackEnd.csproj", "APIBackEnd/"]
-RUN dotnet restore "APIBackEnd/APIBackEnd.csproj"
+COPY ["APIBackEnd.csproj", "./"]
+RUN dotnet restore "./APIBackEnd.csproj"
 COPY . .
-WORKDIR "/src/APIBackEnd"
+WORKDIR /src/.
 RUN dotnet build "APIBackEnd.csproj" -c Release -o /app/build
 
 FROM build AS publish
