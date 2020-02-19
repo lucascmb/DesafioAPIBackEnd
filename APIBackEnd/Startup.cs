@@ -26,13 +26,11 @@ namespace APIBackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<FundosContext>(opt => opt.UseInMemoryDatabase("ListaFundos"));
-            //services.AddDbContext<MovimentacoesContext>(opt => opt.UseInMemoryDatabase("ListaMovimentacoes"));
+            //Adicionando o Contexto da API junto a um banco de dados em memória
             services.AddDbContext<APIContext>(opt => opt.UseInMemoryDatabase("APIDatabase"));
             services.AddControllers();
 
-            //services.AddScoped<>
-
+            //Adicionando o swagger para melhor testar a API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { 
@@ -61,6 +59,7 @@ namespace APIBackEnd
                 app.UseDeveloperExceptionPage();
             }
 
+            //Seedando dados iniciais no BD em memória
             var options = new DbContextOptionsBuilder<APIContext>().UseInMemoryDatabase(databaseName: "APIDatabase").Options;
 
             using (var context = new APIContext(options))
@@ -79,6 +78,7 @@ namespace APIBackEnd
 
             app.UseSwagger();
 
+            //Configurando o swagger
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIBackEnd V1");
