@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIBackEnd.Models;
-using System.Net;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace APIBackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("APIBackEnd/[controller]")]
     [ApiController]
     public class MovimentacoesController : ControllerBase
     {
@@ -47,12 +44,11 @@ namespace APIBackEnd.Controllers
         /// [Adiciona uma movimentação de aplicação ou resgate]
         /// </summary>
         /// <remarks>
-        /// Forma de realizar a Request :
+        /// Sample Request :
         /// 
-        ///     POST / Movimentação
-        ///     (tipoDaMovimentacao : 1 para Aplicação e 2 para Resgate)
-        ///     (idDoFundo : adicionar um ID que exista na tabela de fundos)
-        ///     
+        ///     POST /Movimentacoes
+        ///     (Tipo de Movimentação : 1 para Aplicação e 2 para Resgate)
+        ///     (id do fundo : inserir um ID válido por algum fundo do banco de dados)
         ///     {
         ///         "tipoDaMovimentacao" : 1,
         ///         "cpfDoCliente" : "25489635541",
@@ -63,30 +59,24 @@ namespace APIBackEnd.Controllers
         /// </remarks>
         /// <param name="movimentacao"></param>
         /// <returns>Uma nova movimentação</returns>
+        /// <response code="400">Caso o fundo não exista | Não tenha saldo suficiente para retirada em determinado fundo | O investimento inicial seja menor que o valor pedido pelo fundo</response>            
         [HttpPost]
         public async Task<ActionResult<Movimentacao>> PostMovimentacao(Movimentacao movimentacao)
         {
             if(_context.Fundos.Any(f => f.Id == movimentacao.IdDoFundo))
             {
                 if(!VerificaValorInvestido(movimentacao.IdDoFundo, movimentacao.CpfDoCliente, movimentacao.ValorDaMovimentacao, movimentacao.TipoDaMovimentacao)) 
-                    return BadRequest("Movimentação Inválida : Saldo insuficiente");
+                    return BadRequest("Movimentacao Invalida : Saldo insuficiente");
 
                 VerificaAporteMinimo(movimentacao.ValorDaMovimentacao, movimentacao.IdDoFundo, movimentacao.CpfDoCliente);
 
                 _context.Movimentacoes.Add(movimentacao);
                 await _context.SaveChangesAsync();
 
-                return Ok(CreatedAtAction("GetMovimentacao", new { id = movimentacao.Id }, movimentacao));
+                return CreatedAtAction("GetMovimentacao", new { id = movimentacao.Id }, movimentacao);
             }
 
-            return BadRequest("Movimentação Inválida : O fundo não existe");
-
-            //var response = HttpContext.Features.Get<IExceptionHandlerFeature>();
-
-            //return Problem(
-            //    detail: response.Error.StackTrace,
-            //    title: response.Error.Message
-            //    );
+            return BadRequest("Movimentacao Invalida : O fundo não existe");
         }
 
         bool VerificaValorInvestido(Guid id, string cpf, decimal valor, TipoMovimentacao tipo)
@@ -114,7 +104,7 @@ namespace APIBackEnd.Controllers
 
             var movimentacao = _context.Movimentacoes.Where(m => m.CpfDoCliente == cpf && m.IdDoFundo == id).ToList();
 
-            if(valor <= aporteMinimo && movimentacao.Count == 0) { throw new InvalidOperationException("Movimentação Inválida : O valor investimento não é superior ao valor mínimo do fundo"); }
+            if(valor <= aporteMinimo && movimentacao.Count == 0) { throw new InvalidOperationException("Movimentacao Invalida : O valor investimento nao e superior ao valor minimo do fundo"); }
         }
     }
 }

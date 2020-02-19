@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace APIBackEnd.Models
 {
@@ -10,10 +7,14 @@ namespace APIBackEnd.Models
     {
         public Guid Id { get; set; }
         public TipoMovimentacao TipoDaMovimentacao { get; set; }
+        [Required]
         public string CpfDoCliente { get; set; }
+        [Required]
         public decimal ValorDaMovimentacao { get; set; }
+        [Required]
         public DateTime DataDaMovimentacao { get; set; }
 
+        [Required]
         public Guid IdDoFundo { get; set; }
         //public Fundo Fundo { get; set; }
     }
