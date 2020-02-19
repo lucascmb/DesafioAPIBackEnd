@@ -148,3 +148,5 @@ C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debu
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\SeedFiles\DataFundos.json
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\obj\Debug\netcoreapp3.1\APIBackEnd.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\obj\Debug\netcoreapp3.1\APIBackEnd.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\bin\Debug\netcoreapp3.1\APIBackEnd.xml
+C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\APIBackEnd\obj\Debug\netcoreapp3.1\APIBackEnd.xml

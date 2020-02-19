@@ -1,0 +1,30 @@
+[
+  {
+    "TipoDaMovimentacao": 1,
+    "CpfDoCliente": "2548763215",
+    "ValorDaMovimentacao": 2000,
+    "DataDaMovimentacao": "2020-02-19T05:49:48.098Z",
+    "IdDoFundo": "7065c6e5-89e0-4cec-ac18-b260e85d9b8d"
+  },
+  {
+    "TipoDaMovimentacao": 2,
+    "CpfDoCliente": "2548763215",
+    "ValorDaMovimentacao": 1000,
+    "DataDaMovimentacao": "2020-02-19T05:49:48.098Z",
+    "IdDoFundo": "7065c6e5-89e0-4cec-ac18-b260e85d9b8d"
+  },
+  {
+    "TipoDaMovimentacao": 1,
+    "CpfDoCliente": "2548763215",
+    "ValorDaMovimentacao": 50,
+    "DataDaMovimentacao": "2020-02-19T05:49:48.098Z",
+    "IdDoFundo": "7065c6e5-89e0-4cec-ac18-b260e85d9b8d"
+  },
+  {
+    "TipoDaMovimentacao": 2,
+    "CpfDoCliente": "2548763215",
+    "ValorDaMovimentacao": 2000,
+    "DataDaMovimentacao": "2020-02-19T05:49:48.098Z",
+    "IdDoFundo": "7065c6e5-89e0-4cec-ac18-b260e85d9b8d"
+  }
+]

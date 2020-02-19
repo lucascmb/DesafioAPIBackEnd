@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>APIBackEnd</name>
+    </assembly>
+    <members>
+        <member name="M:APIBackEnd.Controllers.FundosController.GetFundos">
+            <summary>
+            [Retorna a Lista com os Fundos que são carragados no banco de dados em memória]
+            </summary>
+        </member>
+        <member name="M:APIBackEnd.Controllers.MovimentacoesController.PostMovimentacao(APIBackEnd.Models.Movimentacao)">
+            <summary>
+            [Adiciona uma movimentação de aplicação ou resgate]
+            </summary>
+            <remarks>
+            Forma de realizar a Request :
+            
+                POST / Movimentação
+                (tipoDaMovimentacao : 1 para Aplicação e 2 para Resgate)
+                (idDoFundo : adicionar um ID que exista na tabela de fundos)
+                
+                {
+                    "tipoDaMovimentacao" : 1,
+                    "cpfDoCliente" : "25489635541",
+                    "valorDaMovimentacao" : 2000,
+                    "dataDaMovimentacao" : "2020-02-19T05:49:48.098Z",
+                    "idDoFundo" : "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                }
+            </remarks>
+            <param name="movimentacao"></param>
+            <returns>Uma nova movimentação</returns>
+        </member>
+    </members>
+</doc>

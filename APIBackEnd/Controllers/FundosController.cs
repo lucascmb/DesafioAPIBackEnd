@@ -20,11 +20,14 @@ namespace APIBackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/Fundos
+        /// <summary>
+        /// [Retorna a Lista com os Fundos que são carragados no banco de dados em memória]
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Fundo>>> GetFundos()
         {
-            return await _context.Fundos.ToListAsync();
+            var lista = await _context.Fundos.ToListAsync();
+            return Ok(lista);
         }
 
     }

@@ -22,7 +22,7 @@ namespace APIBackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/Movimentacoes
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movimentacao>>> GetMovimentacoes()
         {
@@ -43,26 +43,43 @@ namespace APIBackEnd.Controllers
             return movimentacao;
         }
 
-        // POST: api/Movimentacoes
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        /// <summary>
+        /// [Adiciona uma movimentação de aplicação ou resgate]
+        /// </summary>
+        /// <remarks>
+        /// Forma de realizar a Request :
+        /// 
+        ///     POST / Movimentação
+        ///     (tipoDaMovimentacao : 1 para Aplicação e 2 para Resgate)
+        ///     (idDoFundo : adicionar um ID que exista na tabela de fundos)
+        ///     
+        ///     {
+        ///         "tipoDaMovimentacao" : 1,
+        ///         "cpfDoCliente" : "25489635541",
+        ///         "valorDaMovimentacao" : 2000,
+        ///         "dataDaMovimentacao" : "2020-02-19T05:49:48.098Z",
+        ///         "idDoFundo" : "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        ///     }
+        /// </remarks>
+        /// <param name="movimentacao"></param>
+        /// <returns>Uma nova movimentação</returns>
         [HttpPost]
         public async Task<ActionResult<Movimentacao>> PostMovimentacao(Movimentacao movimentacao)
         {
             if(_context.Fundos.Any(f => f.Id == movimentacao.IdDoFundo))
             {
                 if(!VerificaValorInvestido(movimentacao.IdDoFundo, movimentacao.CpfDoCliente, movimentacao.ValorDaMovimentacao, movimentacao.TipoDaMovimentacao)) 
-                    throw new InvalidOperationException("Movimentação Inválida : Saldo insuficiente");
+                    return BadRequest("Movimentação Inválida : Saldo insuficiente");
 
                 VerificaAporteMinimo(movimentacao.ValorDaMovimentacao, movimentacao.IdDoFundo, movimentacao.CpfDoCliente);
 
                 _context.Movimentacoes.Add(movimentacao);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetMovimentacao", new { id = movimentacao.Id }, movimentacao);
+                return Ok(CreatedAtAction("GetMovimentacao", new { id = movimentacao.Id }, movimentacao));
             }
 
-            throw new InvalidOperationException("Movimentação Inválida : O fundo não existe");
+            return BadRequest("Movimentação Inválida : O fundo não existe");
 
             //var response = HttpContext.Features.Get<IExceptionHandlerFeature>();
 

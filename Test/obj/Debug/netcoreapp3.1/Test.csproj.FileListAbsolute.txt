@@ -225,3 +225,4 @@ C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\Test\obj\Debug\netc
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\Test\obj\Debug\netcoreapp3.1\Test.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\Test\obj\Debug\netcoreapp3.1\Test.pdb
 C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\Test\bin\Debug\netcoreapp3.1\MockDB\DataFundos.json
+C:\Users\lucas\OneDrive\Área de Trabalho\Desafio\APIBackEnd\Test\bin\Debug\netcoreapp3.1\APIBackEnd.xml

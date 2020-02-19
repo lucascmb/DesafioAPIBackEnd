@@ -32,6 +32,7 @@ namespace APIBackEnd.Models
 
             build.Entity<Movimentacao>().ToTable("Movimentacoes");
             build.Entity<Movimentacao>().HasKey(p => p.Id);
+            build.Entity<Movimentacao>().Property(p => p.DataDaMovimentacao).ValueGeneratedOnAdd();
         }
     }
 }

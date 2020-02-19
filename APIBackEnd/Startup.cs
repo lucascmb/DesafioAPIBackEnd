@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +14,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using APIBackEnd.Models;
-using System.IO;
 using System.Text.Json;
 using Microsoft.OpenApi.Models;
 
@@ -39,7 +40,21 @@ namespace APIBackEnd
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIBackEnd", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "APIBackEnd", 
+                    Version = "v1",
+                    Description = "API do Desafio Ativa Investimentos",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Lucas Clemente",
+                        Email = "lucas.cmb03@gmail.com",
+                        Url = new Uri("https://github.com/lucascmb")
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
